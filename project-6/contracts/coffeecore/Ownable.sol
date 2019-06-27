@@ -1,7 +1,9 @@
 pragma solidity ^0.5.7;
 
+import '../coffeebase/SupplyChain.sol';
+
 /// Provides basic authorization control
-contract Ownable {
+contract Ownable is SupplyChain {
     address private origOwner;
 
     // Define an Event
@@ -14,7 +16,7 @@ contract Ownable {
     }
 
     /// Look up the address of the owner
-    function owner() public view returns (address) {
+    function _owner() public view returns (address) {
         return origOwner;
     }
 
