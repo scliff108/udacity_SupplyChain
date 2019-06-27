@@ -1,9 +1,9 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.7;
 // Define a contract 'Supplychain'
 contract SupplyChain {
 
   // Define 'owner'
-  address owner;
+  address payable owner;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -49,7 +49,7 @@ contract SupplyChain {
     State   itemState;  // Product State as represented in the enum above
     address distributorID;  // Metamask-Ethereum address of the Distributor
     address retailerID; // Metamask-Ethereum address of the Retailer
-    address consumerID; // Metamask-Ethereum address of the Consumer
+    address payable consumerID; // Metamask-Ethereum address of the Consumer
   }
 
   // Define 8 events with the same 8 state values and accept 'upc' as input argument
@@ -153,8 +153,15 @@ contract SupplyChain {
   }
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-  function harvestItem(uint _upc, address _originFarmerID, string _originFarmName, string _originFarmInformation, string  _originFarmLatitude, string  _originFarmLongitude, string  _productNotes) public 
-  {
+  function harvestItem(
+    uint _upc,
+    address _originFarmerID,
+    string memory _originFarmName,
+    string memory _originFarmInformation,
+    string memory _originFarmLatitude,
+    string memory _originFarmLongitude,
+    string memory _productNotes) 
+    public {
     // Add the new item as part of Harvest
     
     // Increment sku
@@ -269,10 +276,10 @@ contract SupplyChain {
   uint    itemUPC,
   address ownerID,
   address originFarmerID,
-  string  originFarmName,
-  string  originFarmInformation,
-  string  originFarmLatitude,
-  string  originFarmLongitude
+  string memory originFarmName,
+  string memory originFarmInformation,
+  string memory originFarmLatitude,
+  string memory originFarmLongitude
   ) 
   {
   // Assign values to the 8 parameters
@@ -297,7 +304,7 @@ contract SupplyChain {
   uint    itemSKU,
   uint    itemUPC,
   uint    productID,
-  string  productNotes,
+  string memory productNotes,
   uint    productPrice,
   uint    itemState,
   address distributorID,
