@@ -21,7 +21,7 @@ contract DistributorRole {
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyDistributor() {
-    require(isDistributor(msg.sender), "You do not have the farmer role.");
+    require(isDistributor(msg.sender), "You do not have the distributor role.");
     _;
   }
 
