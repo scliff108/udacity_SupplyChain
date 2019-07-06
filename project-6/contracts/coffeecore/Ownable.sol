@@ -22,7 +22,7 @@ contract Ownable is SupplyChain {
 
     /// Define a function modifier 'onlyOwner'
     modifier onlyOwner() {
-        require(isOwner());
+        require(isOwner(), "Only the contract owner can call this function.");
         _;
     }
 
@@ -44,7 +44,7 @@ contract Ownable is SupplyChain {
 
     /// Define an internal function to transfer ownership
     function _transferOwnership(address newOwner) internal {
-        require(newOwner != address(0));
+        require(newOwner != address(0), "The address provided is not valid.");
         emit TransferOwnership(origOwner, newOwner);
         origOwner = newOwner;
     }
