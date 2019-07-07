@@ -10,6 +10,10 @@
     node v8.11.3
 >
 
+## web3 Version
+>
+    web3@1.0.0-beta.37
+>
 ## Contract Address
 >
     0x80e6C3F217798eF4Ae184c75F9FCB25798e6DCC8 
