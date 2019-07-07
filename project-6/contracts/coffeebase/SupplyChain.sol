@@ -1,5 +1,6 @@
 pragma solidity ^0.5.7;
 
+import '../coffeecore/Ownable.sol';
 import '../coffeeaccesscontrol/ConsumerRole.sol';
 import '../coffeeaccesscontrol/DistributorRole.sol';
 import '../coffeeaccesscontrol/FarmerRole.sol';
@@ -7,7 +8,7 @@ import '../coffeeaccesscontrol/RetailerRole.sol';
 
 
 // Define a contract 'Supplychain'
-contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
+contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
 
   // Define 'owner'
   address payable owner;
@@ -193,6 +194,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
     // Call modifier to check if upc has passed previous supply chain stage
     harvested(_upc)
     // Call modifier to verify caller of this function
+    verifyCaller(items[_upc].ownerID)
     onlyFarmer
   {
     // Update the appropriate fields
@@ -206,6 +208,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
     // Call modifier to check if upc has passed previous supply chain stage
     processed(_upc)
     // Call modifier to verify caller of this function
+    verifyCaller(items[_upc].ownerID)
     onlyFarmer
   {
     // Update the appropriate fields
@@ -219,6 +222,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
     // Call modifier to check if upc has passed previous supply chain stage
     packed(_upc)
     // Call modifier to verify caller of this function
+    verifyCaller(items[_upc].ownerID)
     onlyFarmer
   {
     // Update the appropriate fields
@@ -256,6 +260,7 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
     // Call modifier to check if upc has passed previous supply chain stage
     sold(_upc)
     // Call modifier to verify caller of this function
+    verifyCaller(items[_upc].ownerID)
     onlyDistributor
   {
     // Update the appropriate fields
