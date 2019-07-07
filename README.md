@@ -24,7 +24,7 @@
 ![Sequence Diagram](images/sequence-diagram.png)
 
 ### State Diagram
-![State Diagram](images/State-diagram.png)
+![State Diagram](images/state-diagram.png)
 
 ### Class Diagram (Data Model)
 ![Class Diagram](images/class-diagram.png)
