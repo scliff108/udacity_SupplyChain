@@ -77,8 +77,6 @@ App = {
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
         }
 
-        App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-
         App.getMetaskAccountID();
 
         return App.initSupplyChain();

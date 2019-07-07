@@ -69,12 +69,6 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
   event Received(uint upc);
   event Purchased(uint upc);
 
-  // Define a modifer that checks to see if msg.sender == owner of the contract
-  modifier onlyOwner() {
-    require(msg.sender == owner, "Message sender is not the owner of the contract.");
-    _;
-  }
-
   // Define a modifer that verifies the Caller
   modifier verifyCaller (address _address) {
     require(msg.sender == _address, "Could not verify the caller.");
