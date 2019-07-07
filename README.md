@@ -1,17 +1,39 @@
-# Supply chain & data auditing
+# Project 6B Supply Chain
 
-This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. The user story is similar to any commonly used supply chain process. A Seller can add items to the inventory system stored in the blockchain. A Buyer can purchase such items from the inventory system. Additionally a Seller can mark an item as Shipped, and similarly a Buyer can mark an item as Received.
+## Truffle Version
+>
+    Truffle v5.0.21
+>
 
-The DApp User Interface when running should look like...
+## Node Version
+>
+    node v8.11.3
+>
 
-![truffle test](images/ftc_product_overview.png)
+## Contract Address
+>
+    0x80e6C3F217798eF4Ae184c75F9FCB25798e6DCC8 
+>
 
-![truffle test](images/ftc_farm_details.png)
+## Requirement 1: Project write-up - UML
 
-![truffle test](images/ftc_product_details.png)
+### Activity Diagram
+![Activity Diagram](images/activity-diagram.png)
 
-![truffle test](images/ftc_transaction_history.png)
+### Sequence Diagram
+![Sequence Diagram](images/sequence-diagram.png)
 
+### State Diagram
+![State Diagram](images/State-diagram.png)
+
+### Class Diagram (Data Model)
+![Class Diagram](images/class-diagram.png)
+
+## Requirement 2: Project write-up - Libraries
+I used one library called Roles which made it easier to manage AccessControl in my DAPP. It made it easy to add and remove roles in each of my AccessControl contracts (FarmerRole.sol, DistributorRole.sol, RetailerRole.sol, and ConsumerRole.sol).
+
+## Requirement 3: Project write-up - IPFS
+I did not use IPFS to deliver my website for this project. However, I could have added my HTML, CSS, and JS files to IPFS in order to fully decentralize my Supply Chain DAPP.
 
 ## Getting Started
 
@@ -20,10 +42,6 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
-
-```
-Give examples (to be clarified)
-```
 
 ### Installing
 
@@ -48,19 +66,11 @@ Launch Ganache:
 ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
 ```
 
-Your terminal should look something like this:
-
-![truffle test](images/ganache-cli.png)
-
 In a separate terminal window, Compile smart contracts:
 
 ```
 truffle compile
 ```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_compile.png)
 
 This will create the smart contract artifacts in folder ```build\contracts```.
 
@@ -70,10 +80,6 @@ Migrate smart contracts to the locally running blockchain, ganache-cli:
 truffle migrate
 ```
 
-Your terminal should look something like this:
-
-![truffle test](images/truffle_migrate.png)
-
 Test smart contracts:
 
 ```
@@ -82,29 +88,8 @@ truffle test
 
 All 10 tests should pass.
 
-![truffle test](images/truffle_test.png)
-
 In a separate terminal window, launch the DApp:
 
 ```
 npm run dev
 ```
-
-## Built With
-
-* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
-* [IPFS](https://ipfs.io/) - IPFS is the Distributed Web | A peer-to-peer hypermedia protocol
-to make the web faster, safer, and more open.
-* [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
-
-
-## Authors
-
-See also the list of [contributors](https://github.com/your/project/contributors.md) who participated in this project.
-
-## Acknowledgments
-
-* Solidity
-* Ganache-cli
-* Truffle
-* IPFS
