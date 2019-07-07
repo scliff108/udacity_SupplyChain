@@ -15,9 +15,15 @@ body {
 }
 
 input {
-    width: 80%;
-    padding: 12px 20px;
-    margin: 10px 0;
+  width: 80%;
+  padding: 12px 20px;
+  margin: 10px 0;
+}
+
+select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 10px 0;
 }
 
 button {
@@ -63,4 +69,18 @@ button {
 
 .horizontal-rule {
   background-color:#BDBDBD;
+}
+
+table, td, th {
+  border: 1px solid #BDBDBD;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+th, td {
+  padding: 15px;
 }

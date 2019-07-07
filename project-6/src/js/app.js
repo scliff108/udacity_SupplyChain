@@ -77,6 +77,8 @@ App = {
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
         }
 
+        App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+
         App.getMetaskAccountID();
 
         return App.initSupplyChain();
@@ -160,7 +162,7 @@ App = {
             case 10:
                 return await App.fetchItemBufferTwo(event);
                 break;
-            }
+        }
     },
 
     harvestItem: function(event) {
@@ -175,7 +177,8 @@ App = {
                 App.originFarmInformation, 
                 App.originFarmLatitude, 
                 App.originFarmLongitude, 
-                App.productNotes
+                App.productNotes,
+                {gas: 3000000}
             );
         }).then(function(result) {
             $("#ftc-item").text(result);
@@ -290,12 +293,32 @@ App = {
     ///   event.preventDefault();
     ///    var processId = parseInt($(event.target).data('id'));
         App.upc = $('#upc').val();
-        console.log('upc',App.upc);
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
           return instance.fetchItemBufferOne(App.upc);
         }).then(function(result) {
-          $("#ftc-item").text(result);
+            $("#ftc-item").text('');
+            var resultArray = [];
+            resultArray.push(['SKU', result[0]]);
+            resultArray.push(['UPC', result[1]]);
+            resultArray.push(['Owner ID', result[2]]);
+            resultArray.push(['Origin Farmer ID', result[3]]);
+            resultArray.push(['Origin Farmer Name', result[4]]);
+            resultArray.push(['Origin Farm Info', result[5]]);
+            resultArray.push(['Origin Farm LAT', result[6]]);
+            resultArray.push(['Origin Farm LON', result[7]]);
+            var table = document.createElement('table');
+            resultArray.forEach(function(element) {
+                var tr = document.createElement('tr');
+                var th = document.createElement('th');
+                var td = document.createElement('td');
+                tr.appendChild(th);
+                tr.appendChild(td);
+                th.append(document.createTextNode(element[0]));
+                td.append(document.createTextNode(element[1]));
+                $("#ftc-item").append(tr);
+            });
+
           console.log('fetchItemBufferOne', result);
         }).catch(function(err) {
           console.log(err.message);
@@ -309,7 +332,29 @@ App = {
         App.contracts.SupplyChain.deployed().then(function(instance) {
           return instance.fetchItemBufferTwo.call(App.upc);
         }).then(function(result) {
-          $("#ftc-item").text(result);
+            $("#ftc-item").text('');
+            var resultArray = [];
+            resultArray.push(['SKU', result[0]]);
+            resultArray.push(['UPC', result[1]]);
+            resultArray.push(['Product ID', result[2]]);
+            resultArray.push(['Product Notes', result[3]]);
+            resultArray.push(['Product Price', result[4]]);
+            resultArray.push(['Item State', result[5]]);
+            resultArray.push(['Distributor ID', result[6]]);
+            resultArray.push(['Retailer ID', result[7]]);
+            resultArray.push(['Consumer ID', result[8]]);
+            var table = document.createElement('table');
+            resultArray.forEach(function(element) {
+                var tr = document.createElement('tr');
+                var th = document.createElement('th');
+                var td = document.createElement('td');
+                tr.appendChild(th);
+                tr.appendChild(td);
+                th.append(document.createTextNode(element[0]));
+                td.append(document.createTextNode(element[1]));
+                $("#ftc-item").append(tr);
+            });
+          
           console.log('fetchItemBufferTwo', result);
         }).catch(function(err) {
           console.log(err.message);
@@ -334,7 +379,6 @@ App = {
         }).catch(function(err) {
           console.log(err.message);
         });
-        
     }
 };
 
